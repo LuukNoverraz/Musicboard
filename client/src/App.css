@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.image-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.album-art {    
+  display: block;
+  margin: auto;
+  height: 150px;
+  border-radius: 15%;
+}
+
+.overlay {
+  position: absolute;
+  top: 100px;
+  bottom: 0px;
+  right: 50px;
+  transform: scale(0.2);
+  z-index: 2;
+}

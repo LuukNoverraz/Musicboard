@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 
 import error from '../images/error.png';
+import pause from '../images/pause.png';
 
 import SpotifyWebApi from 'spotify-web-api-js';
 const spotifyApi = new SpotifyWebApi();
@@ -17,7 +18,7 @@ class Song extends Component {
         }
         this.state = {
             loggedIn: token ? true : false,
-            nowPlaying: { name: 'Not Checked', albumArt: error, popularity: null }
+            nowPlaying: { name: 'Not Checked', albumArt: error, popularity: null, artists: '', isPlaying: true }
         }
   }
 
@@ -40,7 +41,9 @@ class Song extends Component {
             nowPlaying: { 
                 name: response.item.name, 
                 albumArt: response.item.album.images[0].url,
-                popularity: response.item.popularity
+                popularity: response.item.popularity,
+                artists: response.item.artists[0].name,
+                isPlaying: response.is_playing
             }
         });
       })
@@ -49,32 +52,39 @@ class Song extends Component {
             nowPlaying: {
                 name: 'No song found',
                 albumArt: error,
-                popularity: null
+                popularity: null,
+                artists: 'No artist found',
+                isPlaying: true
             }
         })
       })
   }
 
     componentDidMount() {
-        this.interval = setInterval(() => 
+        this.interval = setInterval(() =>
         spotifyApi.getMyCurrentPlaybackState()
         .then((response) => {
-        this.setState({
-            nowPlaying: { 
+          console.log(response)
+          this.setState({
+              nowPlaying: {
                 name: response.item.name, 
                 albumArt: response.item.album.images[0].url,
-                popularity: response.item.popularity
-            }
-        })
+                popularity: response.item.popularity,
+                artists: response.item.artists[0].name,
+                isPlaying: response.is_playing
+              }
+          })
         })
         .catch((response) => {
-        this.setState({
-            nowPlaying: {
+          this.setState({
+              nowPlaying: {
                 name: 'No song found',
                 albumArt: error,
-                popularity: null
-            }
-        })
+                popularity: null,
+                artists: 'No artist found',
+                isPlaying: true
+              }
+          })
         }), 3000)
     }
 
@@ -88,9 +98,17 @@ class Song extends Component {
         <a href='http://localhost:8888' > Login to Spotify </a>
         <div>
           Now Playing: { this.state.nowPlaying.name }
+          <br></br>
+          { this.state.nowPlaying.artists }
         </div>
-        <div>
-          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
+        <div className="image-container">
+          <img src={this.state.nowPlaying.albumArt} className="album-art"/>
+          <div className="album-art overlay">
+            { this.state.nowPlaying.isPlaying ?
+              <img></img>
+              : <img src={pause}></img>
+            }
+            </div>
         </div>
         <div>
           Popularity: { this.state.nowPlaying.popularity }
