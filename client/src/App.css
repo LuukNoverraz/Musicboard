@@ -1,60 +1,86 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
+
+body {
+  background: linear-gradient(43deg, #d0face, #4ee270);
+  background-size: 400% 400%;
+
+  -webkit-animation: backgroundGradient 31s ease infinite;
+  -moz-animation: backgroundGradient 31s ease infinite;
+  animation: backgroundGradient 31s ease infinite;
+}
+
+@-webkit-keyframes backgroundGradient {
+  0%{background-position:88% 0%}
+  50%{background-position:13% 100%}
+  100%{background-position:88% 0%}
+}
+
+@-moz-keyframes backgroundGradient {
+  0%{background-position:88% 0%}
+  50%{background-position:13% 100%}
+  100%{background-position:88% 0%}
+}
+
+@keyframes backgroundGradient {
+  0%{background-position:88% 0%}
+  50%{background-position:13% 100%}
+  100%{background-position:88% 0%}
+}
+
+.component-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+/* 
+  display: grid;
+  gap: 1vw;
+  grid-template-areas:
+  'song-component';
+  grid-template-columns: 25vw;
+  grid-template-rows: 25vh; */
+}
+
+.song-component {
   text-align: center;
+  width: inherit;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.song-info {
+  font-family: 'Open Sans', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#now-playing-song {
+  font-weight: bold;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#now-playing-artist {
+ font-weight: lighter; 
 }
 
 .image-container {
   position: relative;
-  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
   height: 150px;
 }
 
 .album-art {    
-  display: block;
   margin: auto;
-  height: 150px;
+  max-height: 150px;
   border-radius: 15%;
+  -webkit-box-shadow: 10px 29px 36px -17px rgba(0,0,0,0.58);
+  -moz-box-shadow: 10px 29px 36px -17px rgba(0,0,0,0.58);
+  box-shadow: 10px 29px 36px -17px rgba(0,0,0,0.58);
 }
 
 .overlay {
   position: absolute;
-  top: 100px;
-  bottom: 0px;
-  right: 50px;
-  transform: scale(0.2);
   z-index: 2;
+  left: 40.5vw;
+  top: 13.5vh;
+}
+
+.overlay-image {
+  height: 4vh;
 }
