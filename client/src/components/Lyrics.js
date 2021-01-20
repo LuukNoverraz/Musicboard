@@ -2,39 +2,46 @@ import React, { Component } from 'react'
 // import '../App.css'
 
 import Song from "./Song"
-import { getLyrics, getSong } from 'genius-lyrics-api'
-
 
 class Lyrics extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        options: {
-          apiKey: 'kHNjO1P0AMy3WMtyW-35CXo0FIlSK17F9rMK0XUlYT1CT26ORlNe6RiELEViuLfInCJ1fnOQ9Qbv3B9Yt8mSkA',
-          title: '',
-          artist: '',
-          optimizeQuery: true
-        }
+        songLyrics: "No lyrics found"
       }
+      this.componentDidMount = this.componentDidMount.bind(this);
+      this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
 
   componentDidMount() {
-    this.setState({
-      options: {
-        apiKey: 'kHNjO1P0AMy3WMtyW-35CXo0FIlSK17F9rMK0XUlYT1CT26ORlNe6RiELEViuLfInCJ1fnOQ9Qbv3B9Yt8mSkA',
-        title: '',
-        artist: '',
-        optimizeQuery: true
-      }
-    })
-    getSong(this.state.options).then((lyrics) => console.log(lyrics));
-}
+    var encodedSongName = encodeURIComponent(this.props.parentSong.name.trim())
+    var encodedSongArtist = encodeURIComponent(this.props.parentSong.artists.trim())
 
+    console.log(encodedSongName)
+  }
+
+  componentDidUpdate() {
+    let that = this
+
+    this.interval = setInterval(() =>
+    fetch('https://api.lyrics.ovh/v1/' + encodedSongArtist + '/' + encodedSongName)
+    .then(response => response.json())
+    .then(function(data) {
+      that.setState({songLyrics: data.lyrics})
+      console.log("Song Lyrics : " + that.state.songLyrics)
+    }), 3000)
+  }
+  
   render() {
     return (
       <div className="lyrics-component">
-        <p>Title: {this.props.title}</p>  
-        <p>Artist: {this.props.artist}</p>
+        <p className="br-3"></p>
+        <h2 className="lyrics-header">Lyrics</h2>
+        <hr></hr>
+        <br></br>
+        <p className="lyrics-content">
+          {this.state.songLyrics}
+        </p>
       </div>
     )
   }

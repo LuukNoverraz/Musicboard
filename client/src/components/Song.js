@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import '../App.css'
 
+import Lyrics from "./Lyrics.js"
+
 import error from '../images/error.png'
-import pause from '../images/pause.png'
+import pause from '../images/pause overlay.png'
+import check from '../images/check.png'
 
 import SpotifyWebApi from 'spotify-web-api-js'
 const spotifyApi = new SpotifyWebApi()
-
 
 class Song extends Component {
     constructor() {
@@ -92,39 +94,57 @@ class Song extends Component {
     clearInterval(this.interval)
   }
 
+  componentDidUpdate() {
+    
+  }
+
   render() {
     return (
-      <div className="song-component">
-        <a href='http://localhost:8888' className="song-info"> Login to Spotify </a>
-        <div className="song-info">
+      <div>
+        <div className="song-component">
           <br></br>
-          <div id="now-playing-song">
-            { this.state.nowPlaying.name }
-          </div>
-          <div id="now-playing-artist">
-            { this.state.nowPlaying.artists }
+          <br></br>
+          <div className="song-info">
             <br></br>
-            <i>{ this.state.nowPlaying.albumName }</i>
+            <div id="now-playing-song">
+              { this.state.nowPlaying.name }
+            </div>
+            <div id="now-playing-artist">
+              { this.state.nowPlaying.artists }
+              <br></br>
+              <i>{ this.state.nowPlaying.albumName }</i>
+            </div>
+          </div>
+          <br></br>
+          <br></br>
+          <div className="image-container">
+            <img src={this.state.nowPlaying.albumArt} className="album-art" alt="Album Cover"/>
+            <div className="album-art overlay">
+              { this.state.nowPlaying.isPlaying ?
+                <img alt=""></img>
+                : <img src={pause} className="overlay-image" alt=""></img>
+              }
+              </div>
+          </div>
+          <br></br>
+          <br></br>
+          { this.state.loggedIn &&
+            <button onClick={() => this.getNowPlaying()} className="song-info">
+              Check Now Playing
+            </button>
+          }
+          <br></br>
+          <br></br>
+          <div>
+            <a href='http://localhost:8888' className="song-info"> Login to Spotify </a>
+            &nbsp;
+            { this.state.nowPlaying ?
+            <p></p>
+            : <img src={check} className="check"></img>
+            }
           </div>
         </div>
-        <br></br>
-        <br></br>
-        <div className="image-container">
-          <img src={this.state.nowPlaying.albumArt} className="album-art" alt="Album Cover"/>
-          <div className="album-art overlay">
-            { this.state.nowPlaying.isPlaying ?
-              <img alt=""></img>
-              : <img src={pause} className="overlay-image" alt=""></img>
-            }
-            </div>
-        </div>
-        <br></br>
-        <br></br>
-        { this.state.loggedIn &&
-          <button onClick={() => this.getNowPlaying()} className="song-info">
-            Check Now Playing
-          </button>
-        }
+        <Lyrics parentSong = {this.state.nowPlaying}/>
       </div>
     )
   }

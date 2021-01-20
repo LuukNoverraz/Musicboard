@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
+import Header from "./components/Header"
 import Song from "./components/Song"
-import Lyrics from "./components/Lyrics"
 
 class App extends Component {
   constructor(){
@@ -13,8 +13,11 @@ class App extends Component {
   render() {
     return (
       <div className="component-container">
-        <Song />
-        <Lyrics title="OK" artist="RTIATIST"/>
+        <div className="background-container">
+          <Header />
+          <Song />
+        </div>
+        <p className="br-10"></p>
       </div>
     );
   }
