@@ -7,29 +7,47 @@ class Lyrics extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        songLyrics: "No lyrics found"
+        songLyrics: "No lyrics found",
+        tempSongName: "No name found",
+        encodedSongName: "No name found",
+        encodedSongArtist: "No artist found"
       }
       this.componentDidMount = this.componentDidMount.bind(this);
-      this.componentDidUpdate = this.componentDidUpdate.bind(this);
+  }
+
+  changeSongState() {
+    // Remove the "Remastered" text from songs that have been listed as such on Spotify to receive lyrics from original
+
+    if (this.props.parentSong.name.endsWith(" - Remastered")) {
+      this.setState({tempSongName: this.props.parentSong.name})
+      this.setState({tempSongName: this.state.tempSongName.replace(' - Remastered', '')})
+    }
+    this.state.encodedSongName = encodeURIComponent(this.state.tempSongName.trim())
+    this.state.encodedSongArtist = encodeURIComponent(this.props.parentSong.artists.trim())
   }
 
   componentDidMount() {
-    var encodedSongName = encodeURIComponent(this.props.parentSong.name.trim())
-    var encodedSongArtist = encodeURIComponent(this.props.parentSong.artists.trim())
+    this.interval = setInterval(() => {
+      this.changeSongState()
 
-    console.log(encodedSongName)
+      var that = this
+
+      fetch('https://api.lyrics.ovh/v1/' + this.state.encodedSongArtist + '/' + this.state.encodedSongName)
+      .then(response => response.json())
+      .then(function(data) {
+        if (data.lyrics !== "") {
+          that.setState({songLyrics: data.lyrics})
+          console.log(that.state.songLyrics)
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }, 3000)
   }
-
-  componentDidUpdate() {
-    let that = this
-
-    this.interval = setInterval(() =>
-    fetch('https://api.lyrics.ovh/v1/' + encodedSongArtist + '/' + encodedSongName)
-    .then(response => response.json())
-    .then(function(data) {
-      that.setState({songLyrics: data.lyrics})
-      console.log("Song Lyrics : " + that.state.songLyrics)
-    }), 3000)
+  
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
   
   render() {
