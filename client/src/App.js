@@ -19,8 +19,8 @@ class App extends Component {
         </div>
         <p className="br-10"></p>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

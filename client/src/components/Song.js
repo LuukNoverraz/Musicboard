@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import '../App.css'
 
 import Lyrics from "./Lyrics.js"
@@ -48,7 +48,7 @@ class Song extends Component {
                 artists: response.item.artists[0].name,
                 isPlaying: response.is_playing
             }
-        });
+        })
       })
       .catch((response) => {
         this.setState({
@@ -152,4 +152,4 @@ class Song extends Component {
   }
 }
 
-export default Song;
+export default Song

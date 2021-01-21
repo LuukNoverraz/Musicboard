@@ -9,7 +9,7 @@ class Lyrics extends Component {
         encodedSongName: "No name found",
         encodedSongArtist: "No artist found"
       }
-      this.componentDidMount = this.componentDidMount.bind(this);
+      this.componentDidMount = this.componentDidMount.bind(this)
   }
 
   changeSongState() {
@@ -51,7 +51,7 @@ class Lyrics extends Component {
 
       var that = this
 
-      console.log('https://api.lyrics.ovh/v1/' + this.state.encodedSongArtist + '/' + this.state.encodedSongName)
+      // Get lyrics from lyrics.ovh api using the encoded song artist and name
 
       fetch('https://api.lyrics.ovh/v1/' + this.state.encodedSongArtist + '/' + this.state.encodedSongName)
       .then(response => response.json())
@@ -88,4 +88,4 @@ class Lyrics extends Component {
   }
 }
 
-export default Lyrics;
+export default Lyrics
