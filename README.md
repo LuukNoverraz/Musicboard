@@ -1,6 +1,13 @@
 # How to use
 
-To use this application, you will have to first off install the node modules used. These are: {yet to be added}
+To use this application, you will have to first off install the node modules used. These are:
+## Bower
+```
+$ npm install -g bower
+```
+Install any other dependencies with npm as needed if application does not boot succesfully.
+
+## Open application in browser
 After having installed these modules, you can host the site locally with the two following steps.
 ```
 cd client
