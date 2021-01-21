@@ -25,21 +25,48 @@ body {
   100%{background-position:96% 0%}
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #6e6e6e;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff00;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #ffffff00;
+}
+::-webkit-scrollbar-track:active {
+  background: #ffffff00;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 .component-container {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-/* 
-  display: grid;
-  gap: 1vw;
-  grid-template-areas:
-  'song-component';
-  grid-template-columns: 25vw;
-  grid-template-rows: 25vh; */
 }
 
 .header-component > hr {
-  width: 80vw;
+  width: 60vw;
   height: 2px;
   border-width: 0;
   color: black;
@@ -64,7 +91,7 @@ body {
 
 .background-container {
   background: white;
-  width: 80vw;
+  width: 60vw;
   margin: 0 auto;
   transform: translate(0, 5vh);
   box-shadow: 10px 29px 36px -17px rgba(0,0,0,0.58);
@@ -89,7 +116,6 @@ body {
 
 .lyrics-component {
   text-align: center;
-  width: 70vw;
   margin: auto;
 }
 

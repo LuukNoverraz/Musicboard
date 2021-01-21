@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css'
 
 import Lyrics from "./Lyrics.js"
+import Info from "./Info.js"
 
 import error from '../images/error.png'
 import pause from '../images/pause overlay.png'
@@ -145,6 +146,7 @@ class Song extends Component {
           </div>
         </div>
         <Lyrics parentSong = {this.state.nowPlaying}/>
+        <Info parentSong = {this.state.nowPlaying}/>
       </div>
     )
   }
