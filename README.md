@@ -18,6 +18,9 @@ and after having gone back to the root folder:
 cd auth-server
 node authorization_code/app.js
 ```
+## How to use the app
+
+When having opened the application in the browser, just login with your Spotify account and the currently playing song will display on the screen. If there are lyrics and/or artist information found relating to your currently playing song, it will appear on the screen.
 
 ## Technical Design
 ![Technical Design](https://i.imgur.com/dFEzJDW.png)
