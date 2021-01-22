@@ -18,3 +18,6 @@ and after having gone back to the root folder:
 cd auth-server
 node authorization_code/app.js
 ```
+
+## Technical Design
+![Technical Design](https://i.imgur.com/dFEzJDW.png)
