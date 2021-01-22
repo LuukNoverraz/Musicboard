@@ -13,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <div className="component-container">
+        <Header />
         <div className="background-container">
-          <Header />
           <Song />
         </div>
         <p className="br-10"></p>

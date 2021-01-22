@@ -41,7 +41,12 @@ class Info extends Component {
   render() {
     return (
       <div className="info-component">
-            <p>{this.state.artistInfo}</p>
+        <h2 className="info-header">Info</h2>
+        <hr></hr>
+        <br></br>
+        <p className="artist-info-text">{this.state.artistInfo + "..."}</p>
+        <br></br>
+        <br></br>
       </div>
     )
   }

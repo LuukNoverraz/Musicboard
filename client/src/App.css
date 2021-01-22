@@ -66,14 +66,13 @@ body {
 }
 
 .header-component > hr {
-  width: 60vw;
   height: 2px;
   border-width: 0;
   color: black;
   background-color: black;
 }
 
-.lyrics-component > hr {
+.lyrics-component > hr, .info-component > hr {
   color: black;
   background-color: black;
   border-width: 0;
@@ -99,14 +98,22 @@ body {
 }
 
 .header-component {
+  height: 7.5vh;
   text-align: center;
   font-size: 40px;
   width: inherit;
+  background: white;
+  box-shadow: 10px 29px 36px -17px rgba(0,0,0,0.58);
+  border-radius: 0 0 .75vw .75vw;
 }
 
-.footer-component {
+.title {
+  margin-top: -3.5vh;
+}
+
+.info-component {
   text-align: center;
-  font-size: 11px;
+  margin: auto;
 }
 
 .song-component {
@@ -180,4 +187,10 @@ button {
 
 .check {
   height: 15px;
+}
+
+.artist-info-text {
+  text-align: center;
+  margin: 0 auto;
+  width: 40vw;
 }

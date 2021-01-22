@@ -12,8 +12,8 @@ class Header extends Component {
     return (
       <div className="header-component">
         <br></br>
-        <p>Musicboard</p>
-        <hr></hr>
+        <p className="title">Musicboard</p>
+        <br></br>
       </div>
     )
   }
